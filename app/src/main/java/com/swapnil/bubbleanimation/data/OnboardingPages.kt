@@ -1,11 +1,12 @@
-package com.swapnil.bubbleanimation
+package com.swapnil.bubbleanimation.data
 
 import androidx.compose.ui.graphics.Color
+import com.swapnil.bubbleanimation.R
 
 val onboardingItems = listOf(
     OnBoardingData(
         animation = R.raw.crypto1, // Replace with your Lottie JSON file
-        title = "Welcome to CryptoX",
+        title = "Welcome to DreamTrade",
         desc = "Buy and sell cryptocurrency using virtual money at live market prices.",
         backgroundColor = Color(0xFF292D32),
         mainColor = Color(0xFF23AF92),

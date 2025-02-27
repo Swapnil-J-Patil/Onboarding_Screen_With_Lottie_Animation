@@ -1,4 +1,4 @@
-package com.swapnil.bubbleanimation
+package com.swapnil.bubbleanimation.data
 
 import androidx.compose.ui.graphics.Color
 

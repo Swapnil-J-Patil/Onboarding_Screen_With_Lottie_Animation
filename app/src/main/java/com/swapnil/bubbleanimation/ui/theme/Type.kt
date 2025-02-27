@@ -10,7 +10,6 @@ import com.swapnil.bubbleanimation.R
 
 // Set of Material typography styles to start with
 val Poppins = FontFamily(Font(R.font.poppins))
-val ReemKufi = FontFamily(Font(R.font.reemkufi))
 val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,
