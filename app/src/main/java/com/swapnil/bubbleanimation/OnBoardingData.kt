@@ -7,5 +7,5 @@ data class OnBoardingData(
     val title: String,
     val desc: String,
     val backgroundColor: Color,
-    val mainColor: Color = Color.Blue
+    val mainColor: Color = Color.Blue,
 )

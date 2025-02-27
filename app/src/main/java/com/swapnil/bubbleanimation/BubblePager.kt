@@ -38,23 +38,13 @@ fun BubblePager(
     pagerState: PagerState,
     pageCount: Int,
     modifier: Modifier = Modifier,
-    bubbleMinRadius: Dp = 48.dp,
+    bubbleMinRadius: Dp = 40.dp,
     bubbleMaxRadius: Dp = 12000.dp,
     bubbleBottomPadding: Dp = 140.dp,
     bubbleColors: List<Color>,
-    vector: ImageVector = ImageVector.vectorResource(id = R.drawable.ic_right_arrow),
-    content: @Composable PagerScope.(Int) -> Unit
+    content: @Composable PagerScope.(Int) -> Unit,
 ) {
-    val icon = rememberVectorPainter(vector)
-    val isDragged by pagerState.interactionSource.collectIsDraggedAsState()
-    val arrowBubbleRadius by animateDpAsState(
-        targetValue = if (pagerState.shouldHideBubble(isDragged)) 0.dp else bubbleMinRadius,
-        animationSpec = tween(350)
-    )
-    val arrowIconSize by animateDpAsState(
-        targetValue = if (pagerState.shouldHideBubble(isDragged)) 0.dp else vector.defaultHeight,
-        animationSpec = tween(350)
-    )
+
     Box(modifier = modifier) {
         HorizontalPager(
             count = pageCount,
@@ -72,14 +62,7 @@ fun BubblePager(
                     radius = radius,
                     centerX = centerX,
                     bottomPadding = bubbleBottomPadding,
-                    color = pagerState.getBubbleColor(bubbleColors)
-                )
-                drawBubbleWithIcon(
-                    radius = arrowBubbleRadius,
-                    bottomPadding = bubbleBottomPadding,
-                    color = pagerState.getNextBubbleColor(bubbleColors),
-                    icon = icon,
-                    iconSize = arrowIconSize
+                    color = Color.White
                 )
             }
         ) { page ->
@@ -88,31 +71,7 @@ fun BubblePager(
     }
 }
 
-fun DrawScope.drawBubbleWithIcon(
-    radius: Dp,
-    bottomPadding: Dp,
-    color: Color,
-    icon: VectorPainter,
-    iconSize: Dp
-) {
-    translate(size.width / 2) {
-        drawCircle(
-            radius = radius.toPx(),
-            color = color,
-            center = Offset(0.dp.toPx(), size.height - bottomPadding.toPx())
-        )
-        with(icon) {
-            iconSize.toPx().let { iconSize ->
-                translate(
-                    top = size.height - bottomPadding.toPx() - iconSize / 2,
-                    left = -(iconSize / 2) + 8 // adding a magic number to optically center the icon
-                ) {
-                    draw(size = Size(iconSize, iconSize))
-                }
-            }
-        }
-    }
-}
+
 
 fun DrawScope.drawBubble(
     radius: Dp,
